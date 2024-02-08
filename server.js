@@ -7,6 +7,10 @@ const port = process.env.PORT || 3001;
     console.log(`Server is running on http://0.0.0.0:${port}`);
   });*/
 
-  app.listen(3001,  () => {
-    console.log(`Server is running on http://0.0.0.0:${port}`);
-  });
+  const PORT = process.env.PORT || 3030;
+
+// your code
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
