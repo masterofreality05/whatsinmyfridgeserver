@@ -11,7 +11,7 @@ const PORT = +process.env.PORT || 3001;
 function getDatabaseUri() {
   return (process.env.NODE_ENV === "test")
       ? "postgresql:///fridge_test"
-      : process.env.DATABASE_URLxw || "postgres://whats_in_my_fridge_db_user:OdrlZ6X2nFSfvLIHN4dPc8eMhs24FbiF@dpg-cn1mn0icn0vc73f9orrg-a.frankfurt-postgres.render.com/whats_in_my_fridge_db";
+      : process.env.DATABASE_URLxw || "postgres://fridge_database_caz7_user:hMyIvHQmqJ0ZQ5KP5IYtW1W5gAquYHvz@dpg-cn2eib0cmk4c73dg742g-a.frankfurt-postgres.render.com/fridge_database_caz7";
 }
 //interal db uri postgres://whats_in_my_fridge_db_user:OdrlZ6X2nFSfvLIHN4dPc8eMhs24FbiF@dpg-cn1mn0icn0vc73f9orrg-a/whats_in_my_fridge_db
 //external db uri postgres://whats_in_my_fridge_db_user:OdrlZ6X2nFSfvLIHN4dPc8eMhs24FbiF@dpg-cn1mn0icn0vc73f9orrg-a.frankfurt-postgres.render.com/whats_in_my_fridge_db
