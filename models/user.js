@@ -139,7 +139,6 @@ class User {
            WHERE username = $1`,
         [username],
     );
-
     const user = userRes.rows[0];
     const ingrediants = await db.query(`SELECT i.item_name, i.id FROM ingrediants i
     JOIN users_ingrediants ui ON i.id = ui.ingrediant_id WHERE ui.user_id = $1`,[user.id]);
@@ -151,33 +150,9 @@ class User {
     ingrediants.rows.map(i => user.ingrediants.push([i.item_name, i.id]))
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
-   /** 
-    const userApplicationsRes = await db.query(
-          `SELECT a.job_id
-           FROM applications AS a
-           WHERE a.username = $1`, [username]);
 
-    user.applications = userApplicationsRes.rows.map(a => a.job_id);
-    */ //This is not relevant, but we can use this to find our recipes maybe!
     return user;
   }
-
-  /** Update user data with `data`.
-   *
-   * This is a "partial update" --- it's fine if data doesn't contain
-   * all the fields; this only changes provided ones.
-   *
-   * Data can include:
-   *   { firstName, lastName, password, email, isAdmin }
-   *
-   * Returns { username, firstName, lastName, email, isAdmin }
-   *
-   * Throws NotFoundError if not found.
-   *
-   * WARNING: this function can set a new password or make a user an admin.
-   * Callers of this function must be certain they have validated inputs to this
-   * or a serious security risks are opened.
-   */
 
   /**Add an ingrediant to the users account by created a user_ingrediant relation  */
   static async addIngrediant(ingrediantID, userID){ //userID is now undefined
