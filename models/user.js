@@ -146,7 +146,7 @@ class User {
     user.ingrediants = []
     let recipes = await db.query(`SELECT r.label, r.link, r.image_url FROM recipes r JOIN
     users_recipes ur ON r.id = ur.recipe_id WHERE ur.user_id = $1`, [user.id]);
-    user.recipes = recipes;
+    user.recipes = recipes.rows;
     
     ingrediants.rows.map(i => user.ingrediants.push([i.item_name, i.id]))
 
