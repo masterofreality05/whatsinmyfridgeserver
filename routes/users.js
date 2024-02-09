@@ -11,14 +11,11 @@ const userUpdateSchema = require("../schemas/userUpdate.json");
 const Ingrediant = require("../models/ingrediant");
 const router = express.Router();
 /** POST / { user }  => { user, token }
- *
  * Adds a new user. This is not the registration endpoint --- instead, this is
  * only for admin users to add new users. The new user being added can be an
  * admin.
- *
  * This returns the newly created user and an authentication token for them:
  *  {user: { username, firstName, lastName, email, isAdmin }, token }
- *
  * Authorization required: admin
  **/
 
@@ -38,9 +35,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 });
 
 /** GET / => { users: [ {username, firstName, lastName, email }, ... ] }
- *
  * Returns list of all users.
- *
  * Authorization required: admin
  **/
 
