@@ -142,10 +142,11 @@ class User {
 
     const user = userRes.rows[0];
     const ingrediants = await db.query(`SELECT i.item_name, i.id FROM ingrediants i
-    JOIN users_ingrediants ui ON i.id = ui.ingrediant_id WHERE ui.user_id = $1`,[user.id])
-
-    console.log("heres our user ingrediants feedback ", ingrediants.rows[0])
+    JOIN users_ingrediants ui ON i.id = ui.ingrediant_id WHERE ui.user_id = $1`,[user.id]);
     user.ingrediants = []
+    user.recipes = await db.query(`SELECT r.label r.link, r.image_url from recipes r JOIN
+    users_recipes ur ON r.id = ur.recipe_id WHERE ur.user_id = $1`, [user.id]);
+    
     ingrediants.rows.map(i => user.ingrediants.push([i.item_name, i.id]))
 
     if (!user) throw new NotFoundError(`No user: ${username}`);

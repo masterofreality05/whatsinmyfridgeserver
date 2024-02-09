@@ -50,17 +50,17 @@ CREATE TABLE users_ingrediants(
 
 CREATE TABLE comments(
   id SERIAL PRIMARY KEY,
-  user INT REFERENCES users(id),
+  user_id INT REFERENCES users(id),
   content TEXT
 
-)
+);
 
 CREATE TABLE likes_comments(
 
   id SERIAL PRIMARY KEY,
   liked_by INT REFERENCES users(id) ON DELETE CASCADE,
-  comment INT REFERENCES comments(id) ON DELETE CASCADE
-)
+  comment_id INT REFERENCES comments(id) ON DELETE CASCADE
+);
 
 
 

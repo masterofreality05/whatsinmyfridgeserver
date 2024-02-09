@@ -8,7 +8,6 @@ const {
 } = require("../expressError");
 
 class Ingrediant {
-
   static async addNew(itemName) {
     const duplicateCheck = await db.query(
           `SELECT id, item_name
@@ -35,7 +34,6 @@ class Ingrediant {
 
   /** Find all recipes.
    **/
-
   static async findAll() {
     const result = await db.query(
           `SELECT *
@@ -45,11 +43,8 @@ class Ingrediant {
 
     return result.rows;
   }
-
   /** Given a item_name, return data about an ingrediant.
-   * Throws NotFoundError if user not found.
-   **/
-
+   * Throws NotFoundError if user not found.**/
   static async get(itemName) {
     let lowerCase = itemName.lowerCase()
     const ingrediantRes = await db.query(
@@ -62,14 +57,6 @@ class Ingrediant {
     const ingrediant = userRes.rows[0];
 
     if (!ingrediant) throw new NotFoundError(`No Ingrediant Found: ${ingrediant}`);
-   /** 
-    const userApplicationsRes = await db.query(
-          `SELECT a.job_id
-           FROM applications AS a
-           WHERE a.username = $1`, [username]);
-
-    user.applications = userApplicationsRes.rows.map(a => a.job_id);
-    */ //This is not relevant, but we can use this to find our recipes maybe!
     return ingrediant;
   }
 
@@ -83,18 +70,9 @@ class Ingrediant {
    */
 
   static async update(id, data) {
- 
-
     const { setCols, values } = sqlForPartialUpdate(
         data,
-        /*
-        {
-          firstName: "first_name",
-          lastName: "last_name",
-          isAdmin: "is_admin",
-        });
-        needs to be update
-        */ 
+
     )
 
     const querySql = `UPDATE recipes 
@@ -109,12 +87,10 @@ class Ingrediant {
     const ingrediant = result.rows[0];
 
     if (!ingrediant) throw new NotFoundError(`No ingrediant found: ${ingrediant}`);
-
     return ingrediant;
   }
 
   /** Delete given user from database; returns undefined. */
-
   static async remove(itemName) {
     let result = await db.query(
           `DELETE

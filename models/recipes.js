@@ -7,9 +7,7 @@ const {
   UnauthorizedError,
 } = require("../expressError");
 /** Related functions for recipes. */
-
 class Recipe {
-
   static async addNew(label, link, image_url) {
     const duplicateCheck = await db.query(
           `SELECT id, label
@@ -37,12 +35,10 @@ class Recipe {
 
     return user;
   }
-
   /** Find all recipes.
    *
 
    **/
-
   static async findAll() {
     const result = await db.query(
           `SELECT *
@@ -76,7 +72,6 @@ class Recipe {
    * This is a "partial update" --- it's fine if data doesn't contain
    * all the fields; this only changes provided ones.
    *
- 
    *
    *
    * Throws NotFoundError if not found.
@@ -121,7 +116,6 @@ class Recipe {
         [id],
     );
     const recipe = result.rows[0];
-
     if (!recipe) throw new NotFoundError(`No recipe found: ${recipe}`);
   }
   /**Add new recipe-ingrediant many to many relationship */
