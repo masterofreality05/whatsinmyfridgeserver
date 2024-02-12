@@ -143,7 +143,7 @@ class User {
     const ingrediants = await db.query(`SELECT i.item_name, i.id FROM ingrediants i
     JOIN users_ingrediants ui ON i.id = ui.ingrediant_id WHERE ui.user_id = $1`,[user.id]);
     user.ingrediants = []
-    let recipes = await db.query(`SELECT r.label, r.link, r.image_url FROM recipes r JOIN
+    let recipes = await db.query(`SELECT  r.id, r.label, r.link, r.image_url FROM recipes r JOIN
     users_recipes ur ON r.id = ur.recipe_id WHERE ur.user_id = $1`, [user.id]);
     user.recipes = recipes.rows;
     
