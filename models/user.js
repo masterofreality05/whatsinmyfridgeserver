@@ -185,6 +185,19 @@ class User {
 
   }
 
+  static async removeRecipe(recipeID, userID){ 
+
+
+    const deleteRecipe = await db.query(`
+    DELETE from users_recipes 
+    WHERE user_id = $1 AND recipe_id = $2
+    RETURNING user_id, recipe_id`,[userID, recipeID])
+
+    return deleteRecipe.rows[0]
+
+
+  }
+
   static async removeIngrediant(ingrediantID, userID){ //userID is now undefined
     console.log("inside users.addINgrediant. Ingrediant ID:", ingrediantID, "userID:", userID)
     const IngrediantUserRelation = await db.query(`

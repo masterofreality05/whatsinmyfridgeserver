@@ -98,6 +98,20 @@ router.post("/adduserrecipe", async function(req, res, next){
   }
 })
 
+router.post("/removerecipe", async function(req, res, next){
+  try {
+    
+    const {recipe, userID} = req.body
+    console.log("!!!!!!!!!", userID) //undefined
+      const deleted = await User.removeRecipe(recipe, userID)
+      return res.json(deletedRecipe)
+    }
+   catch(err){
+    return next(err);
+  }
+})
+
+
 
 
 router.post("/removeingrediant", async function(req, res, next){
